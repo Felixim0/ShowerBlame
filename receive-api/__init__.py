@@ -39,10 +39,12 @@ def showerStarted():
     if overrideStopShower == True:
       timeLimit = -1
       overrideStopShower = False
+  return('Succuess! Shower started')
 
 @app.route('/stopshower')
 def showerStopped():
   global overrideStopShower
   overrideStopShower = True
+  return('Shower End Signal Sent!')
 
 app.run(host='0.0.0.0')
