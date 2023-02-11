@@ -27,7 +27,7 @@ def setGPIO(gpio_number, status):
 
 def allarmBlast():
   setGPIO(27, 1)
-  time.sleep(2)
+  time.sleep(1)
   setGPIO(27, 0)
 
 @app.route('/startshower')
