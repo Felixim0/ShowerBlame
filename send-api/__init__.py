@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import json,time
-from flask import Flask
+import time
 import RPi.GPIO as GPIO
-
-app = Flask(__name__)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -23,9 +20,12 @@ def setGPIO(gpio_number, status):
 
   print(f'Changing {nbr} to {stat}')
 
-@app.route('/live/set/<device_id>/<device_status>')
-def setDevice(device_id, device_status):
-  setGPIO(device_id, device_status)
-  return f'{device_status}, {device_id}'
+def acknowladgeByFlashing():
+  for i in range(0,10):
+    setGPIO(4, 1)
+    time.sleep(0.3)
+    setGPIO(4, 0)
+    time.sleep(0.3)
 
-app.run(host='0.0.0.0')
+
+
