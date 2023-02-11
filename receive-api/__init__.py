@@ -38,14 +38,17 @@ def showerStarted():
   offTime = 0.1
   allarmBlast()
   while timeLimit > 0:
+    print('Countdown Begun')
     setGPIO(4, 1)
-    time.sleep(0.5)
+    time.sleep(onTime)
     setGPIO(4, 0)
-    time.sleep(0.1)
+    time.sleep(offTime)
     timeLimit = timeLimit - (offTime + onTime)
     if overrideStopShower == True:
       timeLimit = -1
       overrideStopShower = False
+      print('Override activated')
+      
   return('Succuess! Shower started')
 
 @app.route('/stopshower')
@@ -53,8 +56,8 @@ def showerStopped():
   global overrideStopShower
   overrideStopShower = True
   allarmBlast()
-  return('Shower End Signal Sent!')
   time.sleep(0.5)
   setGPIO(4, 0)
+  return('Shower End Signal Sent!')
     
 app.run(host='0.0.0.0')
