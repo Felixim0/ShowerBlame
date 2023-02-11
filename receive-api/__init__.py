@@ -41,7 +41,7 @@ def showerStarted():
       overrideStopShower = False
 
 @app.route('/stopshower')
-def showerStarted():
+def showerStopped():
   global overrideStopShower
   overrideStopShower = True
 
