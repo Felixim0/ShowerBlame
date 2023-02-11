@@ -6,6 +6,8 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+GPIO.setup(37, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
+
 def setGPIO(gpio_number, status):
   nbr = int(gpio_number)
 
@@ -27,5 +29,10 @@ def acknowladgeByFlashing():
     setGPIO(4, 0)
     time.sleep(0.3)
 
-
+while True:
+  if GPIO.input(37) == True:
+    acknowladgeByFlashing()
+    # Then send message that time has begun to the CnCC
+  else:
+    time.sleep(0.3)
 
