@@ -3,6 +3,7 @@
 import time
 import requests
 import RPi.GPIO as GPIO
+import threading
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
