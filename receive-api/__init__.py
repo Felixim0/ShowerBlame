@@ -24,12 +24,19 @@ def setGPIO(gpio_number, status):
 
   print(f'Changing {nbr} to {stat}')
 
+
+def allarmBlast():
+  setGPIO(27, 1)
+  time.sleep(2)
+  setGPIO(27, 0)
+
 @app.route('/startshower')
 def showerStarted():
   global overrideStopShower
   timeLimit = 10 # seconds
   onTime = 0.5
   offTime = 0.1
+  allarmBlast()
   while timeLimit > 0:
     setGPIO(4, 1)
     time.sleep(0.5)
@@ -45,6 +52,9 @@ def showerStarted():
 def showerStopped():
   global overrideStopShower
   overrideStopShower = True
+  allarmBlast()
   return('Shower End Signal Sent!')
-
+  time.sleep(0.5)
+  setGPIO(4, 0)
+    
 app.run(host='0.0.0.0')
