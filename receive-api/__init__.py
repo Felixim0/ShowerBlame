@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import json,time
+import time
 from flask import Flask
 import RPi.GPIO as GPIO
+overrideStopShower = False
 
 app = Flask(__name__)
 
@@ -23,9 +24,25 @@ def setGPIO(gpio_number, status):
 
   print(f'Changing {nbr} to {stat}')
 
-@app.route('/live/set/<device_id>/<device_status>')
-def setDevice(device_id, device_status):
-  setGPIO(device_id, device_status)
-  return f'{device_status}, {device_id}'
+@app.route('/startshower')
+def showerStarted():
+  global overrideStopShower
+  timeLimit = 10 # seconds
+  onTime = 0.5
+  offTime = 0.1
+  while timeLimit > 0:
+    setGPIO(4, 1)
+    time.sleep(0.5)
+    setGPIO(4, 0)
+    time.sleep(0.1)
+    timeLimit = timeLimit - (offTime + onTime)
+    if overrideStopShower == True:
+      timeLimit = -1
+      overrideStopShower = False
+
+@app.route('/stopshower')
+def showerStarted():
+  global overrideStopShower
+  overrideStopShower = True
 
 app.run(host='0.0.0.0')
