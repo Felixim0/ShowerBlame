@@ -26,10 +26,16 @@ def setGPIO(gpio_number, status):
   print(f'Changing {nbr} to {stat}')
 
 def startShower():
-  response = requests.get('http://192.168.1.174:5000/startshower')
+  try:
+    response = requests.get('http://192.168.1.174:5000/startshower')
+  except:
+    print('There was an error')
 
 def stopShower():
-  response = requests.get('http://192.168.1.174:5000/stopshower')
+  try:
+    response = requests.get('http://192.168.1.174:5000/stopshower')
+  except:
+    print('There was an error')
   
 def acknowladgeByFlashing():
   for i in range(0,10):
