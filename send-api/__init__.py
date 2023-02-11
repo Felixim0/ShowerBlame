@@ -47,17 +47,18 @@ def cancelShowerTimer():
 
 def buttonCheck():
   global showerStarted
-  if GPIO.input(17) == True:
-    acknowladgeByFlashing()
-    if showerStarted == True:
-      stopShower()
-      showerStarted = False
+  while True:
+    if GPIO.input(17) == True:
+      acknowladgeByFlashing()
+      if showerStarted == True:
+        stopShower()
+        showerStarted = False
+      else:
+        startShower()
+        showerStarted = True
+        cancellShowerThread = threading.Thread(target=cancelShowerTimer, args=())
     else:
-      startShower()
-      showerStarted = True
-      cancellShowerThread = threading.Thread(target=cancelShowerTimer, args=())
-  else:
-    time.sleep(0.3)
+      time.sleep(0.3)
 
 
 
