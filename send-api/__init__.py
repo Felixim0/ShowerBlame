@@ -69,6 +69,8 @@ def buttonCheck():
         # Shower isn't already running, start a shower! (and let all endpoints know)
         startShowerThread = threading.Thread(target=startShower, args=())
         startShowerThread.start()
+        ackThread =  threading.Thread(target=acknowladgeByFlashing, args=())
+        ackThread.start()
         showerStarted = True
         # Don't accpet button input for another second to avoid infinate press
         time.sleep(1)
