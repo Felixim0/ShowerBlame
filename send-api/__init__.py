@@ -21,15 +21,17 @@ def setGPIO(gpio_number, status):
 
   GPIO.setup(nbr  ,GPIO.OUT)
   GPIO.output(nbr ,stat)
-  print(f'Changing {nbr} to {stat}')
+  #print(f'Changing {nbr} to {stat}')
 
 def startShower():
+  print('Sending START')
   try:
     response = requests.get('http://192.168.1.174:5000/startshower')
   except:
     print('There was an error')
 
 def stopShower():
+  print('Sending STOP')
   try:
     response = requests.get('http://192.168.1.174:5000/stopshower')
   except:
@@ -61,20 +63,26 @@ def buttonCheck():
         showerStarted = False
         ackThread =  threading.Thread(target=acknowladgeByFlashing, args=())
         ackThread.start()
+        # Don't accpet button input for another second to avoid infinate press
+        time.sleep(1)
       else:
         # Shower isn't already running, start a shower! (and let all endpoints know)
         startShowerThread = threading.Thread(target=startShower, args=())
         startShowerThread.start()
         showerStarted = True
+        # Don't accpet button input for another second to avoid infinate press
+        time.sleep(1)
     else:
       time.sleep(0.3)
 
-buttonThread = threading.Thread(target=buttonCheck, args=())
+try:
+  buttonThread = threading.Thread(target=buttonCheck, args=())
 
-buttonThread.start()
-buttonThread.join()
+  buttonThread.start()
+  buttonThread.join()
 
-
+finally:
+    GPIO.cleanup()
 
 
     
