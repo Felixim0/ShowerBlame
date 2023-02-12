@@ -3,6 +3,8 @@
 import time
 from flask import Flask
 import RPi.GPIO as GPIO
+import threading
+
 overrideStopShower = False
 
 app = Flask(__name__)
@@ -19,11 +21,8 @@ def setGPIO(gpio_number, status):
     stat = GPIO.LOW
 
   GPIO.setup(nbr  ,GPIO.OUT)
-
   GPIO.output(nbr ,stat)
-
   print(f'Changing {nbr} to {stat}')
-
 
 def allarmBlast():
   setGPIO(27, 1)
@@ -32,11 +31,13 @@ def allarmBlast():
 
 @app.route('/startshower')
 def showerStarted():
+  # Received "Shower Start Message"
   global overrideStopShower
   timeLimit = 10 # seconds
   onTime = 0.5
   offTime = 0.1
-  allarmBlast()
+  ackThread =  threading.Thread(target=allarmBlast, args=())
+  ackThread.start()
   while timeLimit > 0:
     print('Countdown Begun')
     setGPIO(4, 1)
@@ -48,6 +49,7 @@ def showerStarted():
       timeLimit = -1
       overrideStopShower = False
       print('Override activated')
+    print(timeLimit)
       
   return('Succuess! Shower started')
 
@@ -55,7 +57,8 @@ def showerStarted():
 def showerStopped():
   global overrideStopShower
   overrideStopShower = True
-  allarmBlast()
+  ackThread =  threading.Thread(target=allarmBlast, args=())
+  ackThread.start()
   time.sleep(0.5)
   setGPIO(4, 0)
   return('Shower End Signal Sent!')

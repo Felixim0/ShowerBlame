@@ -20,9 +20,7 @@ def setGPIO(gpio_number, status):
     stat = GPIO.LOW
 
   GPIO.setup(nbr  ,GPIO.OUT)
-
   GPIO.output(nbr ,stat)
-
   print(f'Changing {nbr} to {stat}')
 
 def startShower():
@@ -44,7 +42,6 @@ def acknowladgeByFlashing():
     setGPIO(4, 0)
     time.sleep(0.3)
 
-
 def cancelShowerTimer():
   global showerStarted
   time.sleep(10)
@@ -56,21 +53,23 @@ def buttonCheck():
   global showerStarted
   while True:
     if GPIO.input(17) == True:
+      # Button Pressed
       if showerStarted == True:
-        stopShower()
+        # Shower already running? Cancel the shower
+        stopShowerThread = threading.Thread(target=stopShower, args=())
+        stopShowerThread.start()
         showerStarted = False
+        ackThread =  threading.Thread(target=acknowladgeByFlashing, args=())
+        ackThread.start()
       else:
-        startShower()
+        # Shower isn't already running, start a shower! (and let all endpoints know)
+        startShowerThread = threading.Thread(target=startShower, args=())
+        startShowerThread.start()
         showerStarted = True
-        cancellShowerThread = threading.Thread(target=cancelShowerTimer, args=())
-      acknowladgeByFlashing()
     else:
       time.sleep(0.3)
 
-
-
 buttonThread = threading.Thread(target=buttonCheck, args=())
-
 
 buttonThread.start()
 buttonThread.join()
