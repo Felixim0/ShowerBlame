@@ -22,7 +22,7 @@ def setGPIO(gpio_number, status):
 
   GPIO.setup(nbr  ,GPIO.OUT)
   GPIO.output(nbr ,stat)
-  print(f'Changing {nbr} to {stat}')
+  #print(f'Changing {nbr} to {stat}')
 
 def allarmBlast():
   setGPIO(27, 1)
@@ -64,5 +64,9 @@ def showerStopped():
   time.sleep(0.5)
   setGPIO(4, 0)
   return('Shower End Signal Sent!')
-    
-app.run(host='0.0.0.0')
+
+try:
+  
+  app.run(host='0.0.0.0')
+finally:
+    GPIO.cleanup()

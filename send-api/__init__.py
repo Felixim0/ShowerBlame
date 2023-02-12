@@ -71,12 +71,14 @@ def buttonCheck():
     else:
       time.sleep(0.3)
 
-buttonThread = threading.Thread(target=buttonCheck, args=())
+try:
+  buttonThread = threading.Thread(target=buttonCheck, args=())
 
-buttonThread.start()
-buttonThread.join()
+  buttonThread.start()
+  buttonThread.join()
 
-
+finally:
+    GPIO.cleanup()
 
 
     
