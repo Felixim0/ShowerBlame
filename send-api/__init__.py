@@ -44,7 +44,7 @@ def acknowladgeByFlashing():
 
 def cancelShowerTimer():
   global showerStarted
-  time.sleep(10)
+  time.sleep(300)
   # If not already cancelled
   if showerStarted == True:
     showerStarted = False

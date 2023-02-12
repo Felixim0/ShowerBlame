@@ -33,7 +33,7 @@ def allarmBlast():
 def showerStarted():
   # Received "Shower Start Message"
   global overrideStopShower
-  timeLimit = 10 # seconds
+  timeLimit = 300 # 5 Minutes = 300 Seconds
   onTime = 0.5
   offTime = 0.1
   ackThread =  threading.Thread(target=allarmBlast, args=())
