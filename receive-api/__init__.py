@@ -31,6 +31,7 @@ def allarmBlast():
 
 @app.route('/startshower')
 def showerStarted():
+  print('START shower received')
   # Received "Shower Start Message"
   global overrideStopShower
   timeLimit = 300 # 5 Minutes = 300 Seconds
@@ -55,6 +56,7 @@ def showerStarted():
 
 @app.route('/stopshower')
 def showerStopped():
+  print('STOP shower received')
   global overrideStopShower
   overrideStopShower = True
   ackThread =  threading.Thread(target=allarmBlast, args=())
