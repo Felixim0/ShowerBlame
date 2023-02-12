@@ -1,0 +1,21 @@
+sudo nano /etc/systemd/system/shower.service
+
+[Unit]
+Description=Shower BootimeRun for SEND api
+
+[Service]
+User=root
+ExecStart=/usr/bin/python3 /home/pi/ShowerBlame/send-api/__init__.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable shower.service
+
+sudo systemctl start shower.service
+
+sudo systemctl status shower.service
