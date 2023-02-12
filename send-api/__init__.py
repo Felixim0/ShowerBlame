@@ -21,15 +21,17 @@ def setGPIO(gpio_number, status):
 
   GPIO.setup(nbr  ,GPIO.OUT)
   GPIO.output(nbr ,stat)
-  print(f'Changing {nbr} to {stat}')
+  #print(f'Changing {nbr} to {stat}')
 
 def startShower():
+  print('Sending START')
   try:
     response = requests.get('http://192.168.1.174:5000/startshower')
   except:
     print('There was an error')
 
 def stopShower():
+  print('Sending STOP')
   try:
     response = requests.get('http://192.168.1.174:5000/stopshower')
   except:
