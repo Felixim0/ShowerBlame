@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import threading
 
 overrideStopShower = False
+showerRunning = False
 
 app = Flask(__name__)
 
@@ -31,6 +32,11 @@ def allarmBlast():
 
 @app.route('/startshower')
 def showerStarted():
+  global showerRunning
+  if showerRunning:
+    return 'Error: Shower already running'
+  showerRunning = True
+
   print('START shower received')
   # Received "Shower Start Message"
   global overrideStopShower
@@ -51,11 +57,16 @@ def showerStarted():
       overrideStopShower = False
       print('Override activated')
     print(timeLimit)
-      
+  showerRunning = False
   return('Succuess! Shower started')
 
 @app.route('/stopshower')
 def showerStopped():
+  global showerRunning
+  if not showerRunning:
+    return 'Error: Shower not running'
+  showerRunning = False
+
   print('STOP shower received')
   global overrideStopShower
   overrideStopShower = True
