@@ -8,7 +8,7 @@ def acknowladgeByFlashing(**gpioValues):
     time.sleep(0.3)
 
 def setGPIO(gpio_number, status):
-  stat = GPIO.HIGH if (str(stats) == '1') else GPIO.LOW
+  stat = GPIO.HIGH if (str(status) == '1') else GPIO.LOW
 
   GPIO.output(int(gpio_number),stat)
   #print(f'Changing {nbr} to {stat}')
