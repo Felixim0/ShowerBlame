@@ -14,23 +14,23 @@ def setup_lcd(gpioValues):
 # Loop - send text and sleep 3 seconds between texts
 # Change text to anything you wish, but must be 16 characters or less
   while True:
-    lcd_text("Hello World!",LCD_LINE_1)
-    lcd_text("",LCD_LINE_2)
+    lcd_text("Hello World!",LCD_LINE_1, gpioValues)
+    lcd_text("",LCD_LINE_2, gpioValues)
 
-    lcd_text("Rasbperry Pi",LCD_LINE_1)
-    lcd_text("16x2 LCD Display",LCD_LINE_2)
+    lcd_text("Rasbperry Pi",LCD_LINE_1, gpioValues)
+    lcd_text("16x2 LCD Display",LCD_LINE_2, gpioValues)
     sleep(3) # 3 second delay
 
-    lcd_text("ABCDEFGHIJKLMNOP",LCD_LINE_1)
-    lcd_text("1234567890123456",LCD_LINE_2)
+    lcd_text("ABCDEFGHIJKLMNOP",LCD_LINE_1, gpioValues)
+    lcd_text("1234567890123456",LCD_LINE_2, gpioValues)
     sleep(3) # 3 second delay
 
-    lcd_text("I love my",LCD_LINE_1)
-    lcd_text("Raspberry Pi!",LCD_LINE_2)
+    lcd_text("I love my",LCD_LINE_1, gpioValues)
+    lcd_text("Raspberry Pi!",LCD_LINE_2, gpioValues)
     sleep(3)
 
-    lcd_text("MBTechWorks.com",LCD_LINE_1)
-    lcd_text("For more R Pi",LCD_LINE_2)
+    lcd_text("MBTechWorks.com",LCD_LINE_1, gpioValues)
+    lcd_text("For more R Pi",LCD_LINE_2, gpioValues)
     sleep(3)
 
 # End of main program code
@@ -63,7 +63,7 @@ def lcd_write(bits, mode, gpioValues):
     GPIO.output(gpioValues.get("LCD_D7"), True)
 
 # Toggle 'Enable' pin
-  lcd_toggle_enable()
+  lcd_toggle_enable(gpioValues)
 
 # Low bits
   GPIO.output(gpioValues.get("LCD_D4"), False)
@@ -80,20 +80,20 @@ def lcd_write(bits, mode, gpioValues):
     GPIO.output(gpioValues.get("LCD_D7"), True)
 
 # Toggle 'Enable' pin
-  lcd_toggle_enable()
+  lcd_toggle_enable(gpioValues)
 
-def lcd_toggle_enable():
+def lcd_toggle_enable(gpioValues):
   sleep(0.0005)
-  GPIO.output(LCD_E, True)
+  GPIO.output(gpioValues.get("LCD_E"), True)
   sleep(0.0005)
-  GPIO.output(LCD_E, False)
+  GPIO.output(gpioValues.get("LCD_E"), False)
   sleep(0.0005)
 
-def lcd_text(message,line):
+def lcd_text(message,line, gpioValues):
   # Send text to display
-  message = message.ljust(LCD_CHARS," ")
+  message = message.ljust(gpioValues.get("LCD_CHARS")," ")
 
-  lcd_write(line, LCD_CMD)
+  lcd_write(line, gpioValues.get("LCD_CMD"))
 
-  for i in range(LCD_CHARS):
+  for i in range(gpioValues.get("LCD_CHARS")):
     lcd_write(ord(message[i]),LCD_CHR)
