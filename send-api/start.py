@@ -94,7 +94,8 @@ def buttonCheck():
             # Button pressed
             if showerRunning == False:
                 # Start a shower, send message to receivers
-                api.startShower(setTime)
+                startShowerThread = threading.Thread(target=api.startShower, args=(setTime))
+                startShowerThread.start()
 
                 # Start AcknowladgeByFlashing thread
                 ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
