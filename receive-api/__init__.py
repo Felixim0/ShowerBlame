@@ -77,7 +77,7 @@ def showerStopped():
   return('Shower End Signal Sent!')
 
 try:
-  
+
   app.run(host='0.0.0.0')
 finally:
     GPIO.cleanup()
