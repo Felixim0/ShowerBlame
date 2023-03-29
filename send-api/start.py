@@ -24,11 +24,8 @@ gpioValues = {
 # Run test lcd
 lcd.setup_lcd(gpioValues)
 
-# Set screen to default start values
-lcd.lcd_text("Welcome Human!", 1, gpioValues)
-#lcd.lcd_text("", 2, gpioValues)
-
 def setShowerMessage(time):
+    lcd.lcd_text("Welcome Human!", 1, gpioValues)
     lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
 def updateCountdownShowerMessage(time):
@@ -41,12 +38,17 @@ def numPadCheck():
     l1result = l2result = l3result = l4result = None
     while True:
         if showerRunning == True:
-            # The shower is running, display should countdown!
+            # The shower is running, manage countdown
+            # Get the next time ("4:00" --> "3:59")
             setTime = num_pad.reduceTimeByASecond(str(setTime))
-
+            # Update the new time to the display
             updateCountdownShowerMessage(setTime)
-
+            # Wait 1 second so the timer is accurate
             sleep(1)
+            # Check if the time is up!
+            if setTime == "0:00":
+                showerRunning = False
+                setShowerMessage(setTime)
         else:
             # call the readLine function for each row of the keypad
             l1result = num_pad.readLine(gpioValues.get("L1"), ["1","2","3","A"], gpioValues)
