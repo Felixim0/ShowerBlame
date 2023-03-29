@@ -46,18 +46,21 @@ while True:
             setTime = setTime[:-1]
         else:
             setTime = str(setTime) + str(l1result)
+            setTime = str(setTime)[1:] if str(setTime).startswith("0") else setTime
     elif (l2result != None):
         if l2result != "B":
             setTime = str(setTime) + str(l2result)
+            setTime = str(setTime)[1:] if str(setTime).startswith("0") else setTime
     elif (l3result != None):
         if l3result != "C":
             setTime = str(setTime) + str(l3result)
+            setTime = str(setTime)[1:] if str(setTime).startswith("0") else setTime
     elif (l4result != None):
         if (l4result != "D") and (l4result != "*") and (l4result != "#"):
             setTime = str(setTime) + str(l4result)
+            setTime = str(setTime)[1:] if str(setTime).startswith("0") else setTime
 
     # Remove the first 0 if that's there
-    setTime = str(setTime)[1:] if str(setTime).startswith("0") else setTime
     setShowerMessage(setTime)
 
     l1result = l2result = l3result = l4result = None
