@@ -48,6 +48,7 @@ def numPadCheck():
             # Check if the time is up!
             if setTime == "0:00":
                 showerRunning = False
+                setTime = 0
                 setShowerMessage(setTime)
         else:
             # call the readLine function for each row of the keypad
