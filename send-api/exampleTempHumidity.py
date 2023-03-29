@@ -7,7 +7,7 @@ gpio = 26
 
 while True:
     sleep(1)
-    
+
     # Attempt to get a reading from the sensor
     humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
 
