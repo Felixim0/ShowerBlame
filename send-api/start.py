@@ -75,7 +75,7 @@ def buttonCheck():
   while True:
     if gpio_helpers.checkButtonGPIO(gpioValues) == True:
         print("Button Pressed")
-    time.sleep(0.5)
+    sleep(0.5)
 
 try:
   buttonThread = threading.Thread(target=buttonCheck, args=())
