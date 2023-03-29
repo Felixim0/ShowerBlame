@@ -28,7 +28,7 @@ lcd.lcd_text("Welcome Human!", 1, gpioValues)
 #lcd.lcd_text("", 2, gpioValues)
 
 def setShowerMessage(time):
-    lcd.lcd_text("Current Time: " + str(time), 2, gpioValues)
+    lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
 setTime = 0
 l1result = l2result = l3result = l4result = None
@@ -41,13 +41,13 @@ while True:
     l4result = num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
 
     if (l1result != None):
-        setTime = int(setTime) + int(l1result)
+        setTime = str(setTime) + str(l1result)
     elif (l2result != None):
-        setTime = int(setTime) + int(l2result)
+        setTime = str(setTime) + str(l2result)
     elif (l3result != None):
-        setTime = int(setTime) + int(l3result)
+        setTime = str(setTime) + str(l3result)
     elif (l4result != None):
-        setTime = int(setTime) + int(l4result)
+        setTime = str(setTime) + str(l4result)
 
     setShowerMessage(setTime)
 
