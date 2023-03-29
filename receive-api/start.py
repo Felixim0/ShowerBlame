@@ -51,6 +51,7 @@ def showerStarted(minutes):
   # Main program timer (all threads work of this variable)
   while timer > 0:
       print(timer)
+      sleep(1)
       timer = timer - 1
 
   # Timer finished  !
@@ -70,7 +71,7 @@ def showerStopped():
  # ackThread.start()
   return('Shower End Signal Sent!')
 
-  
+
 # Start the API webapp
 try:
   app.run(host='0.0.0.0')
