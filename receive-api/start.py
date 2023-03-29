@@ -9,6 +9,7 @@ import threading
 app = Flask(__name__)
 
 timer = 0
+gpioValues = gpio.setupPins()
 
 def matrixNormalMessage():
     global timer
@@ -38,6 +39,9 @@ def showerStarted(minutes):
   timer = minutes * 60
   while timer > 0:
       # Start flashing light thread
+      gpio.turnStatusLightOn(gpioValues)
+      sleep(1)
+      gpio.turnStatusLightOff(gpioValues)
       sleep(1)
       print(timer)
       timer = timer - 1

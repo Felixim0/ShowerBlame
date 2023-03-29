@@ -13,9 +13,23 @@ def setupPins():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
 
+    # LED Status Pin
+    statusLed= 4
+
+    # Setup pin as an output
+    GPIO.setup(statusLed, GPIO.OUT)
+
+    return {'statusLed': statusLed}
+
+def turnStatusLightOn(gpioValues):
+    setGPIO(gpioValues.get('statusLed'), 1)
+
+def turnStatusLightOff(gpioValues):
+    setGPIO(gpioValues.get('statusLed'), 0)
+
 def cleanup():
     GPIO.cleanup()
-    
+
 def allarmBlast():
   setGPIO(27, 1)
   time.sleep(1)
