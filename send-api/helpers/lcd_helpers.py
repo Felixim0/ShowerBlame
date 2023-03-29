@@ -93,7 +93,7 @@ def lcd_text(message,line, gpioValues):
   # Send text to display
   message = message.ljust(LCD_CHARS," ")
 
-  lcd_write(line, gpioValues.get("LCD_CMD"))
+  lcd_write(line, LCD_CMD, gpioValues)
 
   for i in range(LCD_CHARS):
     lcd_write(ord(message[i]),LCD_CHR)
