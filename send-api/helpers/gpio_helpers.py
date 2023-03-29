@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 def setupPins():
+    global L1, L2, L3, L4, C1, C2, C3, C4,LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7
     # Setup GPIO connectors for numberpad
     L1 = 4
     L2 = 17
