@@ -40,7 +40,7 @@ def numPadCheck():
     setTime = 0
     l1result = l2result = l3result = l4result = None
     while True:
-        if showerRunning:
+        if showerRunning == True:
             # The shower is running, display should countdown!
             setTime = num_pad.reduceTimeByASecond(str(setTime))
 
