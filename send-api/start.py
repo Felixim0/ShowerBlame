@@ -57,7 +57,7 @@ while True:
             setTime = str(setTime) + str(l4result)
 
     # Remove the first 0 if that's there
-    setTime = setTime[1:] if setTime.startswith("0") else setTime
+    setTime = setTime[1:] if str(setTime).startswith("0") else setTime
     setShowerMessage(setTime)
 
     l1result = l2result = l3result = l4result = None
