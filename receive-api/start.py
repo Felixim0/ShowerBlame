@@ -11,12 +11,18 @@ app = Flask(__name__)
 timer = 0
 gpioValues = gpio.setupPins()
 
-def matrixNormalMessage():
+def matrixMessage():
     global timer
-    print('Matrix thread START')
     while timer > 0:
         matrix.write('TEST MESSAGE')
-    print('Matrix thread over')
+
+def statusLed():
+    global timer
+    while timer > 0:
+        gpio.turnStatusLightOn(gpioValues)
+        sleep(0.5)
+        gpio.turnStatusLightOff(gpioValues)
+        sleep(0.5)
 
 @app.route('/startshower/<int:minutes>')
 def showerStarted(minutes):
@@ -33,22 +39,22 @@ def showerStarted(minutes):
 #  ackThread.start()
 
   # Start Matric Thread
-  matrixThread =  threading.Thread(target=matrixNormalMessage, args=())
+  matrixThread =  threading.Thread(target=matrixMessage, args=())
   matrixThread.start()
 
+  # Start Matric Thread
+  statusLedThread =  threading.Thread(target=statusLed, args=())
+  statusLedThread.start()
+
   timer = minutes * 60
+
+  # Main program timer (all threads work of this variable)
   while timer > 0:
-      # Start flashing light thread
-      gpio.turnStatusLightOn(gpioValues)
-      sleep(1)
-      gpio.turnStatusLightOff(gpioValues)
-      sleep(1)
       print(timer)
       timer = timer - 1
 
   # Timer finished  !
   return 'Shower Over'
-
 
 
 @app.route('/stopshower')
@@ -64,6 +70,7 @@ def showerStopped():
  # ackThread.start()
   return('Shower End Signal Sent!')
 
+  
 # Start the API webapp
 try:
   app.run(host='0.0.0.0')
