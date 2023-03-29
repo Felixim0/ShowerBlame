@@ -12,5 +12,5 @@ serial = spi(port=0, device=0, gpio=None)
 device = max7219(serial, cascaded=3, block_orientation=-90)
 
 # Display the message
-show_message(device, "Hello world!", fill="white", font=proportional(CP437_FONT), scroll_delay=300)
+show_message(device, "Hello world!", fill="white", font=proportional(CP437_FONT))
 
