@@ -12,6 +12,7 @@ showerRunning = False
 L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, buttonGPIOnum, ledGPIOnum = \
    gpio_helpers.setupPins()
 
+# Store the GPIO values in a dict
 gpioValues = {
     "L1": L1, "L2": L2, "L3": L3, "L4": L4,
     "C1": C1, "C2": C2, "C3": C3, "C4": C4,
@@ -24,10 +25,12 @@ gpioValues = {
 # Run test lcd
 lcd.setup_lcd(gpioValues)
 
+# Set the non-countdown message
 def setShowerMessage(time):
     lcd.lcd_text("Welcome Human!", 1, gpioValues)
     lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
+# Set the countdown message
 def updateCountdownShowerMessage(time):
     lcd.lcd_text("Shower On!", 1, gpioValues)
     lcd.lcd_text("Time left: " + str(time) + " mins", 2, gpioValues)
@@ -88,15 +91,22 @@ def buttonCheck():
     global setTime, showerRunning
     while True:
         if gpio_helpers.checkButtonGPIO(gpioValues) == True:
-            # Send message to receivers
-            api.startShower(setTime)
+            # Button pressed
+            if showerRunning == False:
+                # Start a shower, send message to receivers
+                api.startShower(setTime)
 
-            # Start AcknowladgeByFlashing thread
-            ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
-            ackThread.start()
+                # Start AcknowladgeByFlashing thread
+                ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
+                ackThread.start()
 
-            # Start the screen countdown!
-            showerRunning = True
+                # Start the screen countdown!
+                showerRunning = True
+            elif showerRunning == False:
+                # Shower already running, we now want to cancell the shower
+                # Set the time to essentially nothing to allow other thread to handle it
+                setTime = "0:02"
+
         sleep(0.2)
 
 try:

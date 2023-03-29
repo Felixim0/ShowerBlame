@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 def readLine(line, characters, gpioValues):
+    # Take the line and possible characters, return selected one
     GPIO.output(line, GPIO.HIGH)
     if(GPIO.input(gpioValues.get("C1")) == 1):
         return characters[0]
@@ -17,12 +18,12 @@ def reduceTimeByASecond(setTime):
     # Split the input string by ':'
     time_parts = setTime.split(':')
 
-    # Check if there is only one part (i.e., just minutes)
+    # Check if there is only one part (i.e. just minutes)
     if len(time_parts) == 1:
-        # Convert the minutes to seconds and subtract 1
+        # Convert the minutes to seconds and minus 1
         total_seconds = int(time_parts[0]) * 60 - 1
     else:
-        # If there are both minutes and seconds, convert them to seconds and subtract 1
+        # If there are both minutes and seconds, convert them to seconds and then minus 1
         total_seconds = int(time_parts[0]) * 60 + int(time_parts[1]) - 1
 
     # Calculate the new minutes and seconds after reducing one second
