@@ -24,8 +24,8 @@ def showerStarted(minutes):
   print(f'Start Shower for: {minutes} mins')
 
   # Received "Blast alarm to acknowladge start message received"
-  ackThread =  threading.Thread(target=allarmBlast, args=())
-  ackThread.start()
+#  ackThread =  threading.Thread(target=allarmBlast, args=())
+#  ackThread.start()
 
   timer = minutes * 60
 
