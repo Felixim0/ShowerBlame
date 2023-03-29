@@ -4,7 +4,7 @@ def startShower(setTime):
   print('Sending START')
   print(setTime)
   try:
-    response = requests.get('http://192.168.1.174:5000/startshower')
+    response = requests.get('http://192.168.1.174:5000/startshower/' + str(setTime))
   except:
     print('There was an error')
 
