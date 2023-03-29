@@ -7,9 +7,9 @@ LCD_CHARS = 16    # Characters per line (16 max)
 LCD_LINE_1 = 0x80 # LCD memory location for 1st line
 LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
 
-def setup_lcd():
+def setup_lcd(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 ):
 # Initialize display
-  lcd_init()
+  lcd_init(LCD_RS)
 # Loop - send text and sleep 3 seconds between texts
 # Change text to anything you wish, but must be 16 characters or less
   while True:
@@ -35,16 +35,16 @@ def setup_lcd():
 # End of main program code
 
 # Initialize and clear display
-def lcd_init():
-  lcd_write(0x33,LCD_CMD) # Initialize
-  lcd_write(0x32,LCD_CMD) # Set to 4-bit mode
-  lcd_write(0x06,LCD_CMD) # Cursor move direction
-  lcd_write(0x0C,LCD_CMD) # Turn cursor off
-  lcd_write(0x28,LCD_CMD) # 2 line display
-  lcd_write(0x01,LCD_CMD) # Clear display
+def lcd_init(LCD_RS):
+  lcd_write(0x33,LCD_CMD, LCD_RS) # Initialize
+  lcd_write(0x32,LCD_CMD, LCD_RS) # Set to 4-bit mode
+  lcd_write(0x06,LCD_CMD, LCD_RS) # Cursor move direction
+  lcd_write(0x0C,LCD_CMD, LCD_RS) # Turn cursor off
+  lcd_write(0x28,LCD_CMD, LCD_RS) # 2 line display
+  lcd_write(0x01,LCD_CMD, LCD_RS) # Clear display
   time.sleep(0.0005)     # Delay to allow commands to process
 
-def lcd_write(bits, mode):
+def lcd_write(bits, mode, LCD_RS):
 # High bits
   GPIO.output(LCD_RS, mode) # RS
 
