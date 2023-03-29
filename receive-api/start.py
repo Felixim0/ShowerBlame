@@ -9,7 +9,7 @@ import threading
 
 app = Flask(__name__)
 
-showerRunning = False
+timer = 0
 
 def matrixNormalMessage():
     global timer
