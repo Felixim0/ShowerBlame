@@ -36,9 +36,18 @@ while True:
     l3result = num_pad.readLine(gpioValues.get("L3"), ["7","8","9","C"], gpioValues)
     l4result = num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
 
-    if (l1result != None) or (l2result != None) or (l3result != None) or (l4result != None):
-      print("CHANGE DETECTED")
-      print(l1result, l2result,l3result,l4result)
-      l1result = l2result = l3result = l4result = None
+    if (l1result != None):
+      print("l1 result has changed to ")
+      print(l1result)
+    elif (l2result != None):
+      print("l2 result has changed to ")
+      print(l2result)
+    elif (l3result != None):
+      print("l3 result has changed to ")
+      print(l3result)
+    elif (l4result != None):
+      print("l4 result has changed to ")
+      print(l4result)
 
+    l1result = l2result = l3result = l4result = None
     sleep(0.2)
