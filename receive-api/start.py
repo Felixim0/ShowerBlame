@@ -27,14 +27,14 @@ def showerStarted(minutes):
 #  ackThread =  threading.Thread(target=allarmBlast, args=())
 #  ackThread.start()
 
-  timer = minutes * 60
+  # Start Matric Thread
+  matrixThread =  threading.Thread(target=matrixNormalMessage, args=())
+  matrixThread.start()
 
+  timer = minutes * 60
   while timer > 0:
       # Start flashing light thread
 
-      # Start Matric Thread
-      matrixThread =  threading.Thread(target=matrixNormalMessage, args=())
-      matrixThread.start()
 
       sleep(1)
       timer = timer - 1
