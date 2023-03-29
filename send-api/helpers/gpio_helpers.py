@@ -67,7 +67,9 @@ def setupPins():
 
     # Tin Foil GPIO
     GPIO.setup(buttonGPIOnum, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
+    # LED output GPIO
     GPIO.setup(ledGPIOnum ,GPIO.OUT)
+    setGPIO(ledGPIOnum, 0)
 
 
     # Make sure to configure the input pins to use the internal pull-down resistors
