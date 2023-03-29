@@ -9,7 +9,7 @@ showerStarted = False
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-GPIO.setup(17, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
+GPIO.setup(12, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
 
 def setGPIO(gpio_number, status):
   nbr = int(gpio_number)
@@ -39,9 +39,9 @@ def stopShower():
   
 def acknowladgeByFlashing():
   for i in range(0,10):
-    setGPIO(4, 1)
+    setGPIO(16, 1)
     time.sleep(0.3)
-    setGPIO(4, 0)
+    setGPIO(16, 0)
     time.sleep(0.3)
 
 def cancelShowerTimer():
