@@ -80,9 +80,8 @@ def buttonCheck():
             api.startShower(setTime)
 
             # Start AcknowladgeByFlashing thread
-            ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, args=(gpioValues))
+            ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
             ackThread.start()
-        
         sleep(0.2)
 
 try:
