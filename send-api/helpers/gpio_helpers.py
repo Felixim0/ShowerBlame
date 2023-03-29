@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 
+def cleanup():
+    GPIO.cleanup()
+
 def setupPins():
     # Setup GPIO connectors for numberpad
     L1 = 4

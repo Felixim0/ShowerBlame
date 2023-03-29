@@ -87,4 +87,4 @@ try:
   numPadThread.join()
 
 finally:
-    GPIO.cleanup()
+    gpio_helpers.cleanup()
