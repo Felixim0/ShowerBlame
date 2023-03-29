@@ -34,4 +34,4 @@ while True:
     num_pad.readLine(gpioValues.get("L2"), ["4","5","6","B"], gpioValues)
     num_pad.readLine(gpioValues.get("L3"), ["7","8","9","C"], gpioValues)
     num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
-    time.sleep(0.1)
+    sleep(0.1)
