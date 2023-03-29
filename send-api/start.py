@@ -3,6 +3,8 @@ from helpers import gpio_helpers
 from helpers import lcd_helpers as lcd
 from helpers import num_pad_helpers as num_pad
 import Adafruit_DHT
+import threading
+import requests
 from time import sleep
 
 print("Start Program")
