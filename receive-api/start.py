@@ -15,7 +15,7 @@ def matrixNormalMessage():
     global timer
     print('Matrix thread START')
     while timer > 0:
-        matrix.write('This is a test message')
+        matrix.write('TEST MESSAGE')
     print('Matrix thread over')
 
 @app.route('/startshower/<int:minutes>')
@@ -44,6 +44,7 @@ def showerStarted(minutes):
       timer = timer - 1
 
   # Timer finished  !
+  return 'Shower Over'
 
 
 
