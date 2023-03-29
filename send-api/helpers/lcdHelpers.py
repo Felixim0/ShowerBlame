@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 
 def setupPins():
     # Setup GPIO connectors for numberpad
