@@ -1,0 +1,3 @@
+
+def setupPins():
+    print("yes");

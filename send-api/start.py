@@ -2,6 +2,7 @@
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 from time import sleep
+from .helpers.lcdHelpers import setupPins
 
 # Setup GPIO connectors for numberpad
 L1 = 4
