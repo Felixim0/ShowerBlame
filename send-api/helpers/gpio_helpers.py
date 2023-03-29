@@ -10,7 +10,6 @@ def acknowladgeByFlashing(**gpioValues):
 
 def setGPIO(gpio_number, status):
   stat = GPIO.HIGH if (str(status) == '1') else GPIO.LOW
-
   GPIO.output(int(gpio_number),stat)
   #print(f'Changing {nbr} to {stat}')
 
