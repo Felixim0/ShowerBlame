@@ -24,7 +24,7 @@ print(gpioValues)
 lcd.setup_lcd(gpioValues)
 
 # Set screen to default start values
-lcd.lcd_text("Welcome Human! :)", 1, gpioValues)
+lcd.lcd_text("Welcome Human!", 1, gpioValues)
 #lcd.lcd_text("", 2, gpioValues)
 
 def setShowerMessage(time):
@@ -48,6 +48,8 @@ while True:
         setTime = int(setTime) + int(l3result)
     elif (l4result != None):
         setTime = int(setTime) + int(l4result)
+
+    setShowerMessage(setTime)
 
     l1result = l2result = l3result = l4result = None
     sleep(0.2)
