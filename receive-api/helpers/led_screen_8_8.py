@@ -18,9 +18,9 @@ def write(msg):
 
 
 
-    print(f'Writing"{msg}" to screen')
+    print(f'Writing "{msg}" to screen')
     show_message(device,
      msg,
      fill="white",
      font=proportional(CP437_FONT),
-     scroll_delay=0.2)
+     scroll_delay=0.15)
