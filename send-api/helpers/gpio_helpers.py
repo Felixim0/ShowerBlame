@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-def acknowladgeByFlashing(gpioValues):
+def acknowladgeByFlashing(**gpioValues):
   for i in range(0,10):
     setGPIO(gpioValues.get("ledGPIOnum"), 1)
     time.sleep(0.3)
