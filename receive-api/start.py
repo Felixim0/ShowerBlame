@@ -28,13 +28,16 @@ def statusLed():
 def showerStarted(minutes):
   global timer
 
+  # Get number of seconds
+  timer = minutes * 60
+
   if timer > 0:
       # Shower already running, so stop here!
       return 'Shower already running'
 
-  print(f'Start Shower for: {minutes} mins')
+  print(f'Start Shower for: {timer} secs')
 
-  # Received "Blast alarm to acknowladge start message received"
+  # Start output threads
 #  ackThread =  threading.Thread(target=allarmBlast, args=())
 #  ackThread.start()
 
@@ -45,8 +48,6 @@ def showerStarted(minutes):
   # Start Matric Thread
   statusLedThread =  threading.Thread(target=statusLed, args=())
   statusLedThread.start()
-
-  timer = minutes * 60
 
   # Main program timer (all threads work of this variable)
   while timer > 0:
