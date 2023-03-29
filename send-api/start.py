@@ -9,7 +9,24 @@ print("Start Program")
 L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 = \
    gpio_helpers.setupPins()
 
+gpioValues = {
+    "L1": L1,
+    "L2": L2,
+    "L3": L3,
+    "L4": L4,
+    "C1": C1,
+    "C2": C2,
+    "C3": C3,
+    "C4": C4,
+    "LCD_RS": LCD_RS,
+    "LCD_E": LCD_E,
+    "LCD_D4": LCD_D4,
+    "LCD_D5": LCD_D5,
+    "LCD_D6": LCD_D6,
+    "LCD_D7": LCD_D7
+}
+
 print("Start Program")
-print(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 )
+print(gpioValues)
 # Run test lcd
-lcd.setup_lcd(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 )
+lcd.setup_lcd(gpioValues)
