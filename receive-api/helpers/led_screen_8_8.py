@@ -13,7 +13,7 @@ from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_
 def write(msg):
     # Create device
     serial = spi(port=0, device=0, gpio=noop())
-    device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
+    device = max7219(serial, cascaded=1, block_orientation=block_orientation,
                      rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
 
 
@@ -24,5 +24,3 @@ def write(msg):
      fill="white",
      font=proportional(CP437_FONT),
      scroll_delay=0.2)
-
-    
