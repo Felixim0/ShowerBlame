@@ -39,7 +39,7 @@ def showerStarted(minutes):
   print(f'Start Shower for: {timer} secs')
 
   # Start output threads
-  ackThread =  threading.Thread(target=gpio.allarmBlast, args=args=(gpioValues))
+  ackThread =  threading.Thread(target=gpio.allarmBlast, args=(gpioValues))
   ackThread.start()
 
   # Start Matric Thread
