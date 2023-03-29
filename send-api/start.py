@@ -9,9 +9,7 @@ print("Start Program")
 L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 = \
    gpio_helpers.setupPins()
 
-print("Setup the GPIO pins with these values:")
+print("Start Program")
 print(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 )
-
 # Run test lcd
-print("Running LCD test")
-lcd.setup_lcd(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 )
+lcd.setup_lcd()

@@ -7,7 +7,7 @@ LCD_CHARS = 16    # Characters per line (16 max)
 LCD_LINE_1 = 0x80 # LCD memory location for 1st line
 LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
 
-def setup_lcd(L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7):
+def setup_lcd():
 # Initialize display
   lcd_init()
 # Loop - send text and sleep 3 seconds between texts
@@ -96,17 +96,3 @@ def lcd_text(message,line):
 
   for i in range(LCD_CHARS):
     lcd_write(ord(message[i]),LCD_CHR)
-
-
-#Begin program
-try:
-  main()
-
-except KeyboardInterrupt:
-  pass
-
-finally:
-  lcd_write(0x01, LCD_CMD)
-  lcd_text("So long!",LCD_LINE_1)
-  lcd_text("MBTechWorks.com",LCD_LINE_2)
-  GPIO.cleanup()
