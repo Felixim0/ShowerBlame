@@ -30,8 +30,8 @@ lcd.lcd_text("", 2, gpioValues)
 # Numpad
 while True:
     # call the readLine function for each row of the keypad
-    num_pad.readLine(gpioValues.get("L1"), ["1","2","3","A"])
-    num_pad.readLine(gpioValues.get("L2"), ["4","5","6","B"])
-    num_pad.readLine(gpioValues.get("L3"), ["7","8","9","C"])
-    num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"])
+    num_pad.readLine(gpioValues.get("L1"), ["1","2","3","A"], gpioValues)
+    num_pad.readLine(gpioValues.get("L2"), ["4","5","6","B"], gpioValues)
+    num_pad.readLine(gpioValues.get("L3"), ["7","8","9","C"], gpioValues)
+    num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
     time.sleep(0.1)
