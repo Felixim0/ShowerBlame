@@ -6,9 +6,6 @@ def setGPIO(gpio_number, status):
   #print(f'Changing {nbr} to {stat}')
 
 def setupPins():
-    # Setup GPIO connectors for numberpad
-    return False
-
     # Setup GPIO modes
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
