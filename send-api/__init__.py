@@ -41,7 +41,7 @@ def stopShower():
     response = requests.get('http://192.168.1.174:5000/stopshower')
   except:
     print('There was an error')
-  
+
 def acknowladgeByFlashing():
   for i in range(0,10):
     setGPIO(ledGPIOnum, 1)
@@ -90,7 +90,3 @@ try:
 
 finally:
     GPIO.cleanup()
-
-
-    
-
