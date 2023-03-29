@@ -21,6 +21,11 @@ def matrixNormalMessage():
 @app.route('/startshower/<int:minutes>')
 def showerStarted(minutes):
   global timer
+
+  if timer > 0:
+      # Shower already running, so stop here!
+      return 'Shower already running'
+
   print(f'Start Shower for: {minutes} mins')
 
   # Received "Blast alarm to acknowladge start message received"
@@ -34,12 +39,11 @@ def showerStarted(minutes):
   timer = minutes * 60
   while timer > 0:
       # Start flashing light thread
-
-
       sleep(1)
+      print(timer)
       timer = timer - 1
 
-
+  # Timer finished  !
 
 
 
