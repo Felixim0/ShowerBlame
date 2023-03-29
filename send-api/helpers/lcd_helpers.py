@@ -18,19 +18,19 @@ def setup_lcd(gpioValues):
 
     lcd_text("Rasbperry Pi",LCD_LINE_1)
     lcd_text("16x2 LCD Display",LCD_LINE_2)
-    time.sleep(3) # 3 second delay
+    sleep(3) # 3 second delay
 
     lcd_text("ABCDEFGHIJKLMNOP",LCD_LINE_1)
     lcd_text("1234567890123456",LCD_LINE_2)
-    time.sleep(3) # 3 second delay
+    sleep(3) # 3 second delay
 
     lcd_text("I love my",LCD_LINE_1)
     lcd_text("Raspberry Pi!",LCD_LINE_2)
-    time.sleep(3)
+    sleep(3)
 
     lcd_text("MBTechWorks.com",LCD_LINE_1)
     lcd_text("For more R Pi",LCD_LINE_2)
-    time.sleep(3)
+    sleep(3)
 
 # End of main program code
 
@@ -42,7 +42,7 @@ def lcd_init(gpioValues):
   lcd_write(0x0C,LCD_CMD, gpioValues) # Turn cursor off
   lcd_write(0x28,LCD_CMD, gpioValues) # 2 line display
   lcd_write(0x01,LCD_CMD, gpioValues) # Clear display
-  time.sleep(0.0005)     # Delay to allow commands to process
+  sleep(0.0005)     # Delay to allow commands to process
 
 def lcd_write(bits, mode, gpioValues):
 # High bits
@@ -82,11 +82,11 @@ def lcd_write(bits, mode, gpioValues):
   lcd_toggle_enable()
 
 def lcd_toggle_enable():
-  time.sleep(0.0005)
+  sleep(0.0005)
   GPIO.output(LCD_E, True)
-  time.sleep(0.0005)
+  sleep(0.0005)
   GPIO.output(LCD_E, False)
-  time.sleep(0.0005)
+  sleep(0.0005)
 
 def lcd_text(message,line):
   # Send text to display
