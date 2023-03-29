@@ -41,13 +41,13 @@ while True:
     l4result = num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
 
     if (l1result != None):
-        if l1result != "A":
-            setTime = str(setTime) + str(l1result)
-    elif (l2result != None):
-        if l2result == "B":
+        if l1result == "A":
             # Back, delete the last character
             setTime = setTime[:-1]
         else:
+            setTime = str(setTime) + str(l1result)
+    elif (l2result != None):
+        if l2result != "B":
             setTime = str(setTime) + str(l2result)
     elif (l3result != None):
         if l3result != "C":
@@ -56,6 +56,8 @@ while True:
         if (l4result != "D") and (l4result != "*") and (l4result != "#"):
             setTime = str(setTime) + str(l4result)
 
+    # Remove the first 0 if that's there
+    setTime = setTime[1:] if setTime.startswith("0") else setTime
     setShowerMessage(setTime)
 
     l1result = l2result = l3result = l4result = None
