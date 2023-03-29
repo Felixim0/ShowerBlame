@@ -36,5 +36,5 @@ def cleanup():
 
 def allarmBlast(**gpioValues):
   setGPIO(gpioValues.get('allarm'), 1)
-  time.sleep(1)
+  sleep(1)
   setGPIO(gpioValues.get('allarm'), 0)
