@@ -20,6 +20,12 @@ def setupPins():
     LCD_D6 = 23  # Pi pin 16
     LCD_D7 = 18  # Pi pin 12
 
+    # GPIO bcm For button
+    buttonGPIOnum = 12
+    # GPIO num for led
+    ledGPIOnum = 16
+    GPIO.setup(buttonGPIOnum, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
+
     # Initialize the GPIO settings
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
@@ -64,4 +70,4 @@ def setupPins():
     # 15: LCD Backlight +5V
     # 16: LCD Backlight GND
     print("Finished setup of pins")
-    return L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7 
+    return L1, L2, L3, L4, C1, C2, C3, C4, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7, buttonGpioNum, ledGPIOnum
