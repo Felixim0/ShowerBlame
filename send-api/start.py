@@ -24,9 +24,13 @@ print(gpioValues)
 lcd.setup_lcd(gpioValues)
 
 # Set screen to default start values
-lcd.lcd_text("Hello World!", 1, gpioValues)
-lcd.lcd_text("", 2, gpioValues)
+lcd.lcd_text("Welcome to shower!", 1, gpioValues)
+#lcd.lcd_text("", 2, gpioValues)
 
+def setShowerMessage(time):
+    lcd.lcd_text("Current Time: " + time, 2, gpioValues)
+
+setTime = 0
 l1result = l2result = l3result = l4result = None
 # Numpad
 while True:
@@ -37,17 +41,13 @@ while True:
     l4result = num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
 
     if (l1result != None):
-      print("l1 result has changed to ")
-      print(l1result)
+        setTime = int(setTime) + l1result
     elif (l2result != None):
-      print("l2 result has changed to ")
-      print(l2result)
+        setTime = int(setTime) + l2result
     elif (l3result != None):
-      print("l3 result has changed to ")
-      print(l3result)
+        setTime = int(setTime) + l3result
     elif (l4result != None):
-      print("l4 result has changed to ")
-      print(l4result)
+        setTime = int(setTime) + l4result
 
     l1result = l2result = l3result = l4result = None
     sleep(0.2)
