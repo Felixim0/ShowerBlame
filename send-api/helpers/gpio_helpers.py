@@ -3,6 +3,11 @@ import RPi.GPIO as GPIO
 def cleanup():
     GPIO.cleanup()
 
+def checkButtonGPIO(gpioValues):
+    if GPIO.input(gpioValues.get("buttonGPIOnum")) == True:
+        return True
+    return False
+
 def setupPins():
     # Setup GPIO connectors for numberpad
     L1 = 4

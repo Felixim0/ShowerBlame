@@ -73,7 +73,7 @@ def numPadCheck():
 
 def buttonCheck():
   while True:
-    if GPIO.input(gpioValues.get("buttonGPIOnum")) == True:
+    if gpio_helpers.checkButtonGPIO(gpioValues) == True:
         print("Button Pressed")
     time.sleep(0.5)
 
