@@ -1,4 +1,4 @@
-
+import RPi.GPIO as GPIO
 
 def readLine(line, characters):
     GPIO.output(line, GPIO.HIGH)
