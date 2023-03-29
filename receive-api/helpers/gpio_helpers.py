@@ -34,7 +34,7 @@ def turnStatusLightOff(gpioValues):
 def cleanup():
     GPIO.cleanup()
 
-def allarmBlast(gpioValues):
+def allarmBlast(**gpioValues):
   setGPIO(gpioValues.get('allarm'), 1)
   time.sleep(1)
   setGPIO(gpioValues.get('allarm'), 0)
