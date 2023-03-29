@@ -1,11 +1,12 @@
 import RPi.GPIO as GPIO
+from time import sleep
 
 def acknowladgeByFlashing(**gpioValues):
   for i in range(0,10):
     setGPIO(gpioValues.get("ledGPIOnum"), 1)
-    time.sleep(0.3)
+    sleep(0.3)
     setGPIO(gpioValues.get("ledGPIOnum"), 0)
-    time.sleep(0.3)
+    sleep(0.3)
 
 def setGPIO(gpio_number, status):
   stat = GPIO.HIGH if (str(status) == '1') else GPIO.LOW
