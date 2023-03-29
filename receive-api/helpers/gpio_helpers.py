@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from time import sleep
 
 def setGPIO(gpio_number, status):
   stat = GPIO.HIGH if (str(status) == '1') else GPIO.LOW
