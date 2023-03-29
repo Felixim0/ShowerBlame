@@ -70,7 +70,7 @@ def lcd_text(message, line, gpioValues):
       line = LCD_LINE_1
   elif line == 2:
       LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
-      line = LCD_LINE_1
+      line = LCD_LINE_2
   # Send text to display
   message = message.ljust(LCD_CHARS," ")
 
