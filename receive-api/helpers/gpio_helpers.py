@@ -15,6 +15,7 @@ def setupPins():
 
     # Setup pin as an output
     GPIO.setup(statusLed, GPIO.OUT)
+    setGPIO(statusLed, 0)
 
     return {'statusLed': statusLed}
 
