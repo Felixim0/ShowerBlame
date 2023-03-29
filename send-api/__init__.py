@@ -9,7 +9,12 @@ showerStarted = False
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-GPIO.setup(12, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
+# GPIO bcm For button
+buttonGPIOnum = 12
+# GPIO num for led
+ledGPIOnum = 16
+
+GPIO.setup(buttonGPIOnum, GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # For the TinFoilSwitch
 
 def setGPIO(gpio_number, status):
   nbr = int(gpio_number)
@@ -39,9 +44,9 @@ def stopShower():
   
 def acknowladgeByFlashing():
   for i in range(0,10):
-    setGPIO(16, 1)
+    setGPIO(ledGPIOnum, 1)
     time.sleep(0.3)
-    setGPIO(16, 0)
+    setGPIO(ledGPIOnum, 0)
     time.sleep(0.3)
 
 def cancelShowerTimer():
@@ -54,7 +59,7 @@ def cancelShowerTimer():
 def buttonCheck():
   global showerStarted
   while True:
-    if GPIO.input(17) == True:
+    if GPIO.input(buttonGPIOnum) == True:
       # Button Pressed
       if showerStarted == True:
         # Shower already running? Cancel the shower
