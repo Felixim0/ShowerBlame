@@ -96,4 +96,4 @@ def lcd_text(message,line, gpioValues):
   lcd_write(line, LCD_CMD, gpioValues)
 
   for i in range(LCD_CHARS):
-    lcd_write(ord(message[i]),LCD_CHR)
+    lcd_write(ord(message[i]),LCD_CHR, gpioValues)
