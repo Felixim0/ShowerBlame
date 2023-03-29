@@ -41,13 +41,20 @@ while True:
     l4result = num_pad.readLine(gpioValues.get("L4"), ["*","0","#","D"], gpioValues)
 
     if (l1result != None):
-        setTime = str(setTime) + str(l1result)
+        if l1result != "A":
+            setTime = str(setTime) + str(l1result)
     elif (l2result != None):
-        setTime = str(setTime) + str(l2result)
+        if l2result == "B":
+            # Back, delete the last character
+            setTime = setTime[:-1]
+        else:
+            setTime = str(setTime) + str(l2result)
     elif (l3result != None):
-        setTime = str(setTime) + str(l3result)
+        if l3result != "C":
+            setTime = str(setTime) + str(l3result)
     elif (l4result != None):
-        setTime = str(setTime) + str(l4result)
+        if (l4result != "D") and (l4result != "*") and (l4result != "#"):
+            setTime = str(setTime) + str(l4result)
 
     setShowerMessage(setTime)
 
