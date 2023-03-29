@@ -159,4 +159,4 @@ finally:
   lcd_write(0x01, LCD_CMD)
   lcd_text("So long!",LCD_LINE_1)
   lcd_text("MBTechWorks.com",LCD_LINE_2)
-  GPIO.cleanup()p
+  GPIO.cleanup()
