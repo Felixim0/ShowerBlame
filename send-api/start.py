@@ -27,7 +27,7 @@ lcd.setup_lcd(gpioValues)
 lcd.lcd_text("Hello World!", 1, gpioValues)
 lcd.lcd_text("", 2, gpioValues)
 
-l1result, l2result, l3result, l4result = None
+l1result = l2result = l3result = l4result = None
 # Numpad
 while True:
     # call the readLine function for each row of the keypad
@@ -39,6 +39,6 @@ while True:
     if (l1result != None) or (l2result != None) or (l3result != None) or (l4result != None):
       print("CHANGE DETECTED")
       print(l1result, l2result,l3result,l4result)
-      l1result, l2result, l3result, l4result = None
+      l1result = l2result = l3result = l4result = None
 
     sleep(0.2)
