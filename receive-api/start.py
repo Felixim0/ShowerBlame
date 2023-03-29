@@ -28,13 +28,14 @@ def statusLed():
 def showerStarted(minutes):
   global timer
 
-  # Get number of seconds
-  timer = minutes * 60
-
   if timer > 0:
       # Shower already running, so stop here!
       return 'Shower already running'
 
+  # Get number of seconds
+  timer = minutes * 60
+  
+  # Log start
   print(f'Start Shower for: {timer} secs')
 
   # Start output threads
