@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import time
+import threading
 import requests
 import RPi.GPIO as GPIO
-import threading
 showerStarted = False
 
 GPIO.setmode(GPIO.BCM)

@@ -2,7 +2,8 @@
 from helpers import gpio_helpers
 from helpers import lcd_helpers as lcd
 from helpers import num_pad_helpers as num_pad
-import threading, requests, Adafruit_DHT
+from helpers import api_helpers as api
+import threading, Adafruit_DHT
 from time import sleep
 
 print("Start Program")
@@ -32,6 +33,7 @@ def setShowerMessage(time):
     lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
 def numPadCheck():
+    global setTime
     setTime = 0
     l1result = l2result = l3result = l4result = None
     while True:
@@ -68,10 +70,13 @@ def numPadCheck():
         sleep(0.2)
 
 def buttonCheck():
-  while True:
+    global setTime
+    while True:
     if gpio_helpers.checkButtonGPIO(gpioValues) == True:
         print("Button Pressed")
-    sleep(0.5)
+        api.startShower(setTime)
+
+    sleep(0.2)
 
 try:
   buttonThread = threading.Thread(target=buttonCheck, args=())
