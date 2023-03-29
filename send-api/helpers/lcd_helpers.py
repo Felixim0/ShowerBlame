@@ -91,9 +91,9 @@ def lcd_toggle_enable(gpioValues):
 
 def lcd_text(message,line, gpioValues):
   # Send text to display
-  message = message.ljust(gpioValues.get("LCD_CHARS")," ")
+  message = message.ljust(LCD_CHARS," ")
 
   lcd_write(line, gpioValues.get("LCD_CMD"))
 
-  for i in range(gpioValues.get("LCD_CHARS")):
+  for i in range(LCD_CHARS):
     lcd_write(ord(message[i]),LCD_CHR)
