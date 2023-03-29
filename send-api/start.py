@@ -102,7 +102,7 @@ def buttonCheck():
 
                 # Start the screen countdown!
                 showerRunning = True
-            elif showerRunning == False:
+            elif showerRunning == True:
                 # Shower already running, we now want to cancell the shower
                 # Set the time to essentially nothing to allow other thread to handle it
                 setTime = "0:02"
