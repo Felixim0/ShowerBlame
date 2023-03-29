@@ -65,6 +65,12 @@ def lcd_toggle_enable(gpioValues):
   sleep(0.0005)
 
 def lcd_text(message, line, gpioValues):
+  if line == 1:
+      LCD_LINE_1 = 0x80 # LCD memory location for 1st line
+      line = LCD_LINE_1
+  elif line == 2:
+      LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
+      line = LCD_LINE_1
   # Send text to display
   message = message.ljust(LCD_CHARS," ")
 
@@ -72,3 +78,13 @@ def lcd_text(message, line, gpioValues):
 
   for i in range(LCD_CHARS):
     lcd_write(ord(message[i]),LCD_CHR, gpioValues)
+
+
+
+
+
+
+
+
+
+    #
