@@ -73,9 +73,16 @@ def buttonCheck():
     global setTime
     while True:
         if gpio_helpers.checkButtonGPIO(gpioValues) == True:
+            # Log button Press
             print("Button Pressed")
+
+            # Send message to receivers
             api.startShower(setTime)
 
+            # Start AcknowladgeByFlashing thread
+            ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, args=(gpioValues))
+            ackThread.start()
+        
         sleep(0.2)
 
 try:
