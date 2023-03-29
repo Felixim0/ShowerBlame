@@ -33,7 +33,7 @@ lcd.setup_lcd(gpioValues)
 
 # Loop - send text and sleep 3 seconds between texts
 # Change text to anything you wish, but must be 16 characters or less
-  while True:
+while True:
     lcd.lcd_text("Hello World!",LCD_LINE_1, gpioValues)
     lcd.lcd_text("",LCD_LINE_2, gpioValues)
 
