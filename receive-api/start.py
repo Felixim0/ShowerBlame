@@ -6,7 +6,6 @@ from helpers import led_screen_8_8 as matrix
 from helpers import gpio_helpers as gpio
 import threading
 
-
 app = Flask(__name__)
 
 timer = 0
@@ -50,22 +49,19 @@ def showerStarted(minutes):
 
 @app.route('/stopshower')
 def showerStopped():
-  global showerRunning
-  if not showerRunning:
+  global timer
+  if timer  <= 0:
     return 'Error: Shower not running'
-  showerRunning = False
 
-  print('STOP shower received')
-  global overrideStopShower
-  overrideStopShower = True
-  ackThread =  threading.Thread(target=allarmBlast, args=())
-  ackThread.start()
-  time.sleep(0.5)
-  setGPIO(4, 0)
+  # Cancel the timer
+  timer = 0
+
+#  ackThread =  threading.Thread(target=allarmBlast, args=())
+ # ackThread.start()
   return('Shower End Signal Sent!')
 
+# Start the API webapp
 try:
-
   app.run(host='0.0.0.0')
 finally:
     gpio.cleanup()

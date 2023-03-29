@@ -16,17 +16,24 @@ def write(msg):
     device = max7219(serial, cascaded=1, block_orientation=0,
                      rotate=0, blocks_arranged_in_reverse_order=False)
 
+    # Set device slightly dimmer
+    device.contrast(16)
+
     # Calculate the time it takes to scroll the text
     scroll_delay = 0.15
     total_characters = len(msg) + device.width
     total_time = scroll_delay * total_characters
 
+    # Log message
     print(f'Writing "{msg}" to screen')
+
+    # Show Message to device
     show_message(device,
      msg,
      fill="white",
      font=proportional(CP437_FONT),
-     scroll_delay=0.15)
+     scroll_delay=scroll_delay)
 
+    # Wait the time it takes to scroll
     time.sleep(total_time)
     return False
