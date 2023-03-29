@@ -2,7 +2,7 @@ import Adafruit_DHT
 
 # Set sensor type and BCM GPIO number
 sensor = Adafruit_DHT.DHT11
-gpio = 37
+gpio = 26
 
 # Attempt to get a reading from the sensor
 humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
