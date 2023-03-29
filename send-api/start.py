@@ -2,9 +2,7 @@
 from helpers import gpio_helpers
 from helpers import lcd_helpers as lcd
 from helpers import num_pad_helpers as num_pad
-import Adafruit_DHT
-import threading
-import requests
+import threading, requests, Adafruit_DHT
 from time import sleep
 
 print("Start Program")
@@ -33,11 +31,9 @@ lcd.lcd_text("Welcome Human!", 1, gpioValues)
 def setShowerMessage(time):
     lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
-setTime = 0
-l1result = l2result = l3result = l4result = None
-# Numpad
-
 def numPadCheck():
+    setTime = 0
+    l1result = l2result = l3result = l4result = None
     while True:
         # call the readLine function for each row of the keypad
         l1result = num_pad.readLine(gpioValues.get("L1"), ["1","2","3","A"], gpioValues)
