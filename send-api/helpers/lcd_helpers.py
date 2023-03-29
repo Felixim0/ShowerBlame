@@ -5,13 +5,11 @@ from time import sleep
 LCD_CHR = True    # Character mode
 LCD_CMD = False   # Command mode
 LCD_CHARS = 16    # Characters per line (16 max)
-LCD_LINE_1 = 0x80 # LCD memory location for 1st line
-LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
 
 def setup_lcd(gpioValues):
 # Initialize display
   lcd_init(gpioValues)
-  
+
 # Initialize and clear display
 def lcd_init(gpioValues):
   lcd_write(0x33,LCD_CMD, gpioValues) # Initialize
@@ -66,7 +64,7 @@ def lcd_toggle_enable(gpioValues):
   GPIO.output(gpioValues.get("LCD_E"), False)
   sleep(0.0005)
 
-def lcd_text(message,line, gpioValues):
+def lcd_text(message, line, gpioValues):
   # Send text to display
   message = message.ljust(LCD_CHARS," ")
 

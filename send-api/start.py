@@ -31,6 +31,9 @@ print(gpioValues)
 # Run test lcd
 lcd.setup_lcd(gpioValues)
 
+LCD_LINE_1 = 0x80 # LCD memory location for 1st line
+LCD_LINE_2 = 0xC0 # LCD memory location 2nd line
+
 # Loop - send text and sleep 3 seconds between texts
 # Change text to anything you wish, but must be 16 characters or less
 while True:
