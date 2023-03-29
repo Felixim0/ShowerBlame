@@ -72,11 +72,11 @@ def numPadCheck():
 def buttonCheck():
     global setTime
     while True:
-    if gpio_helpers.checkButtonGPIO(gpioValues) == True:
-        print("Button Pressed")
-        api.startShower(setTime)
+        if gpio_helpers.checkButtonGPIO(gpioValues) == True:
+            print("Button Pressed")
+            api.startShower(setTime)
 
-    sleep(0.2)
+        sleep(0.2)
 
 try:
   buttonThread = threading.Thread(target=buttonCheck, args=())
