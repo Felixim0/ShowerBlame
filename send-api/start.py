@@ -32,8 +32,8 @@ def setShowerMessage(time):
     lcd.lcd_text("Time: " + str(time) + " mins", 2, gpioValues)
 
 def updateCountdownShowerMessage(time):
-    lcd.lcd_text("Shower in progress!", 1, gpioValues)
-    lcd.lcd_text("Time Remaining: " + str(time) + " mins", 2, gpioValues)
+    lcd.lcd_text("Shower On!", 1, gpioValues)
+    lcd.lcd_text("Time left: " + str(time) + " mins", 2, gpioValues)
 
 def numPadCheck():
     global setTime, showerRunning
