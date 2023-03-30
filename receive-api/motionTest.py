@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO                       #Import GPIO library
 
 import time                                   #Import time library
 
-GPIO.setmode(GPIO.BOARD)                      #Set GPIO pin numbering
+GPIO.setmode(GPIO.BCM)                    #Set GPIO pin numbering
 
 pir = 23                                      #Associate pin 26 to pir
 
