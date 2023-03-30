@@ -31,7 +31,10 @@ def setupPins():
     return {'statusLed': statusLed, 'allarm': allarm, 'motionPin': motionPin}
 
 def motionDetected(gpioValues):
-    True if GPIO.input(gpioValues.get('motionPin')) else False
+    if GPIO.input(gpioValues.get('motionPin')):
+        print("Motion detected")
+        return True
+    return False
 
 def turnStatusLightOn(gpioValues):
     setGPIO(gpioValues.get('statusLed'), 1)
