@@ -13,12 +13,12 @@ gpioValues = gpio.setupPins()
 
 def motionDetector():
     global timer
-    print("starting motion detector thread")
     while timer > 0:
         if gpio.motionDetected(gpioValues):
-            print("Setting allarm off because of blast")
             ackThread =  threading.Thread(target=gpio.allarmBlast, kwargs=gpioValues)
             ackThread.start()
+            # Once allerted do not set off for another 4 secs! (unless there's still movement)
+            sleep(3)
         sleep(1)
 
 def matrixMessage():
