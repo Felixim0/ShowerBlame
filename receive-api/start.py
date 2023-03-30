@@ -48,7 +48,7 @@ def showerStarted(minutes):
   print(f'Start Shower for: {timer} secs')
 
   # Start output threads
-  motionDetectorThread =  threading.Thread(target=motionDetector, kwargs=gpioValues)
+  motionDetectorThread =  threading.Thread(target=motionDetector, args=())
   motionDetectorThread.start()
 
   # Start output threads
