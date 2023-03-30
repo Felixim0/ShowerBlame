@@ -19,7 +19,7 @@ def setupPins():
 
     # Motion Detector Pin
     motionPin = 23
-    GPIO.setup(pir, GPIO.IN)
+    GPIO.setup(motionPin, GPIO.IN)
 
     # Setup pin as an output
     GPIO.setup(statusLed, GPIO.OUT)
