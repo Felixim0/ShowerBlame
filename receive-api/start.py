@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# encoding: utf-8
 from time import sleep
 from flask import Flask
 from helpers import led_screen_8_8 as matrix
@@ -8,13 +7,14 @@ import threading
 
 app = Flask(__name__)
 
+# Set timer, setup pins
 timer = 0
 gpioValues = gpio.setupPins()
 
 def matrixMessage():
     global timer
     while timer > 0:
-        matrix.write('TEST MESSAGE')
+        matrix.write('SHOWER IN PROGRESS')
 
 def statusLed():
     global timer
@@ -59,7 +59,6 @@ def showerStarted(minutes):
   # Timer finished  !
   return 'Shower Over'
 
-
 @app.route('/stopshower')
 def showerStopped():
   global timer
@@ -69,10 +68,10 @@ def showerStopped():
   # Cancel the timer
   timer = 0
 
-#  ackThread =  threading.Thread(target=allarmBlast, args=())
- # ackThread.start()
+  # Start output threads
+  ackThread =  threading.Thread(target=gpio.allarmBlast, kwargs=gpioValues)
+  ackThread.start()
   return('Shower End Signal Sent!')
-
 
 # Start the API webapp
 try:
