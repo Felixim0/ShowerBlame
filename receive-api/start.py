@@ -11,6 +11,14 @@ app = Flask(__name__)
 timer = 0
 gpioValues = gpio.setupPins()
 
+def motionDetector():
+    global timer
+    while timer > 0:
+        if gpio.motionDetected(gpioValues):
+            gpio.allarmBlast()
+
+        sleep(2)
+
 def matrixMessage():
     global timer
     while timer > 0:
@@ -37,6 +45,10 @@ def showerStarted(minutes):
 
   # Log start
   print(f'Start Shower for: {timer} secs')
+
+  # Start output threads
+  motionDetectorThread =  threading.Thread(target=motionDetector, kwargs=gpioValues)
+  motionDetectorThread.start()
 
   # Start output threads
   ackThread =  threading.Thread(target=gpio.allarmBlast, kwargs=gpioValues)
