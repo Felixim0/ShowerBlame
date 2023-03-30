@@ -8,17 +8,17 @@ pir = 23                                      #Associate pin 26 to pir
 
 GPIO.setup(pir, GPIO.IN)                      #Set pin as GPIO in 
 
-print "Waiting for sensor to settle"
+print ("Waiting for sensor to settle")
 
 time.sleep(2)                   #Waiting 2 seconds for the sensor to initiate
 
-print "Detecting motion"
+print ("Detecting motion")
 
 while True:
 
     if GPIO.input(pir):             #Check whether pir is HIGH
 
-        print "Motion Detected!"
+        print ("Motion Detected!")
 
         time.sleep(2)              #D1- Delay to avoid multiple detection
 
