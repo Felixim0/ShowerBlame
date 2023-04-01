@@ -11,6 +11,11 @@ def reset_timer():
     ser.write(b"reset")
 
 if __name__ == "__main__":
-    send_start_time(10, 20)  # Send start time of 10 minutes and 20 seconds
+    # Initialise by immediately resetting the timer
+    reset_timer()  # Reset the timer
+    time.sleep(10)
+    send_start_time(1, 20)  # Send start time of 10 minutes and 20 seconds
     time.sleep(5)  # Wait for 5 seconds
     reset_timer()  # Reset the timer
+    time.sleep(10)
+    send_start_time(1, 20)  # Send start time of 10 minutes and 20 seconds
