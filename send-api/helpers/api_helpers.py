@@ -5,14 +5,16 @@ import threading
 def startTimer(**setTime):
   print('starting the timer seperately')
   print(setTime)
+  time = setTime.get('setTime')
   # Send message to countdown timer
   try:
       response = requests.get('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
+      print('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
   except:
       print("Error starting the timer")
 
 def startShower(**setTime):
-  setTime = setTime.get('setTime')
+  time = setTime.get('setTime')
   print('Sending START')
   print(setTime)
   try:
@@ -21,7 +23,7 @@ def startShower(**setTime):
     startTimerThread.start()
 
     # Send message to motion sensor and display and buzzer
-    response = requests.get('http://192.168.1.174:5000/startshower/' + str(setTime))
+    response = requests.get('http://192.168.1.174:5000/startshower/' + str(time))
   except:
     print('There was an error')
 
