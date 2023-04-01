@@ -110,9 +110,9 @@ def buttonCheck():
             elif showerRunning == True:
                 # Shower already running, we now want to cancell the shower
                 # Set the time to essentially nothing to allow other thread to handle it
-                stopShowerThread = threading.Thread(target=api.buttonCheck, args=())
+                stopShowerThread = threading.Thread(target=api.stopShower, args=())
                 stopShowerThread.start()
-                
+
                 setTime = "0:00"
                 sleep(2)
 
