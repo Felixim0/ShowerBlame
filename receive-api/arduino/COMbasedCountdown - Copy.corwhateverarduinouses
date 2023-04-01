@@ -67,7 +67,7 @@ void update_countdown() {
 
 void reset_countdown() {
   countdown_duration = 0;
-  sevseg.setNumber(0, 0);
+  sevseg.setChars("--.--");
 }
 
 
