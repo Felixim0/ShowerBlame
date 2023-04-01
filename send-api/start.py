@@ -95,7 +95,7 @@ def buttonCheck():
             if showerRunning == False:
                 if (str(setTime) != '0') and (str(setTime) != '0:00'):
                     # Start a shower, send message to receivers
-                    startShowerThread = threading.Thread(target=api.startShower, args=(setTime))
+                    startShowerThread = threading.Thread(target=api.startShower, kwargs=setTime)
                     startShowerThread.start()
 
                     # Start AcknowladgeByFlashing thread
