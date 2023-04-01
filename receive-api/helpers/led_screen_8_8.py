@@ -20,7 +20,7 @@ def write(msg):
     device.contrast(16)
 
     # Calculate the time it takes to scroll the text
-    scroll_delay = 0.15
+    scroll_delay = 0.10
     total_characters = len(msg) + device.width
     total_time = scroll_delay * total_characters
 
