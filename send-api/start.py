@@ -109,6 +109,11 @@ def buttonCheck():
                     sleep(2)
             elif showerRunning == True:
                 # Shower already running, we now want to cancell the shower
+
+                # Start AcknowladgeByFlashing thread
+                ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
+                ackThread.start()
+
                 # Set the time to essentially nothing to allow other thread to handle it
                 stopShowerThread = threading.Thread(target=api.stopShower, args=())
                 stopShowerThread.start()
@@ -119,6 +124,7 @@ def buttonCheck():
         sleep(0.2)
 
 try:
+  # Start event driven threads
   buttonThread = threading.Thread(target=buttonCheck, args=())
   numPadThread = threading.Thread(target=numPadCheck, args=())
 
