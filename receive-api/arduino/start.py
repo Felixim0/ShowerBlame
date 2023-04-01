@@ -34,6 +34,6 @@ def resetTimer():
 
 # Start the API webapp
 try:
-  app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', threaded=True)
 finally:
     print("Programme ended")
