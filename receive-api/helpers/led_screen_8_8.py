@@ -14,13 +14,13 @@ def write(msg):
     # Create device
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=1, block_orientation=0,
-                     rotate=0, blocks_arranged_in_reverse_order=False)
+                     rotate=3, blocks_arranged_in_reverse_order=False)
 
     # Set device slightly dimmer
     device.contrast(16)
 
     # Calculate the time it takes to scroll the text
-    scroll_delay = 0.15
+    scroll_delay = 0.10
     total_characters = len(msg) + device.width
     total_time = scroll_delay * total_characters
 

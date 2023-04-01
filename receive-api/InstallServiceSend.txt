@@ -16,6 +16,8 @@ sudo systemctl daemon-reload
 
 sudo systemctl enable shower.service
 
+sudo systemctl stop shower.service
+
 sudo systemctl start shower.service
 
 sudo systemctl status shower.service
