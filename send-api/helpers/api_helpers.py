@@ -1,6 +1,6 @@
 import requests
 
-def startShower(setTime):
+def startShower(**setTime):
   print('Sending START')
   print(setTime)
   try:
