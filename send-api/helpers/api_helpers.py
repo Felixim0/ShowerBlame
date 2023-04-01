@@ -9,9 +9,9 @@ def startTimer(**setTime):
   time = setTime.get('setTime')
   # Send message to countdown timer
   try:
-      response = requests.get('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
+      response = requests.get('http://192.168.1.193:5000/startTimer/' + str(time) + '/01')
       print('URL: ')
-      print('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
+      print('http://192.168.1.193:5000/startTimer/' + str(time) + '/01')
       print()
   except:
       print("Error starting the timer")
