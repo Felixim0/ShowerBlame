@@ -1,0 +1,40 @@
+#include "SevSeg.h"
+SevSeg sevseg;
+
+void setup() {
+  byte numDigits = 4;
+  byte digitPins[] = {10, 11, 12, 13};
+  byte segmentPins[] = {9, 2, 3, 5, 6, 8, 7, 4};
+
+  bool resistorsOnSegments = true;
+  bool updateWithDelaysIn = true;
+  byte hardwareConfig = COMMON_CATHODE;
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments);
+  sevseg.setBrightness(90);
+}
+
+void loop() {
+  countdown(10, 20); // Start the countdown from 10 minutes 30 seconds
+}
+
+void countdown(unsigned long startMinutes, unsigned long startSeconds) {
+  unsigned long timeRemaining = (startMinutes * 60 + startSeconds) * 1000; // Convert to milliseconds
+  unsigned long startTime = millis();
+  while (timeRemaining > 0) {
+    unsigned long elapsedTime = millis() - startTime;
+    unsigned long displayTime = (timeRemaining - elapsedTime) / 1000;
+    unsigned long minutes = displayTime / 60;
+    unsigned long seconds = displayTime % 60;
+
+    // Combine minutes and seconds for display
+    unsigned long displayNumber = minutes * 100 + seconds;
+
+    // Display the remaining time on the 7-segment display
+    sevseg.setNumber(displayNumber, 2); // 2 decimal places for the dot between minutes and seconds
+    sevseg.refreshDisplay();
+
+    // Update timeRemaining
+    timeRemaining = (startMinutes * 60 + startSeconds) * 1000;
+  }
+}
+
