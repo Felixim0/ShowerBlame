@@ -1,9 +1,15 @@
 import requests
 import threading
 
+
 def startTimer(**setTime):
+  print('starting the timer seperately')
+  print(setTime)
   # Send message to countdown timer
-  response = requests.get('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
+  try:
+      response = requests.get('http://192.168.1.193:5000/startTimer/' + str(setTime) + '/01')
+  except:
+      print("Error starting the timer")
 
 def startShower(**setTime):
   setTime = setTime.get('setTime')
