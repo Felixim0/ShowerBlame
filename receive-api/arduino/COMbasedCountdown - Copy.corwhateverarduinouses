@@ -1,0 +1,59 @@
+#include "SevSeg.h"
+SevSeg sevseg;
+
+void setup() {
+  Serial.begin(9600);
+
+  byte numDigits = 4;
+  byte digitPins[] = {10, 11, 12, 13};
+  byte segmentPins[] = {9, 2, 3, 5, 6, 8, 7, 4};
+
+  bool resistorsOnSegments = true;
+  bool updateWithDelaysIn = true;
+  byte hardwareConfig = COMMON_CATHODE;
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments);
+  sevseg.setBrightness(90);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String input = Serial.readString();
+
+    if (input.startsWith("reset")) {
+      reset_countdown();
+    } else {
+      int separatorIndex = input.indexOf(',');
+      unsigned long startMinutes = input.substring(0, separatorIndex).toInt();
+      unsigned long startSeconds = input.substring(separatorIndex + 1).toInt();
+      countdown(startMinutes, startSeconds);
+    }
+  }
+}
+
+void reset_countdown() {
+  sevseg.setNumber(0, 0);
+  sevseg.refreshDisplay();
+}
+
+
+void countdown(unsigned long startMinutes, unsigned long startSeconds) {
+  unsigned long timeRemaining = (startMinutes * 60 + startSeconds) * 1000; // Convert to milliseconds
+  unsigned long startTime = millis();
+  while (timeRemaining > 0) {
+    unsigned long elapsedTime = millis() - startTime;
+    unsigned long displayTime = (timeRemaining - elapsedTime) / 1000;
+    unsigned long minutes = displayTime / 60;
+    unsigned long seconds = displayTime % 60;
+
+    // Combine minutes and seconds for display
+    unsigned long displayNumber = minutes * 100 + seconds;
+
+    // Display the remaining time on the 7-segment display
+    sevseg.setNumber(displayNumber, 2); // 2 decimal places for the dot between minutes and seconds
+    sevseg.refreshDisplay();
+
+    // Update timeRemaining
+    timeRemaining = (startMinutes * 60 + startSeconds) * 1000;
+  }
+}
+
