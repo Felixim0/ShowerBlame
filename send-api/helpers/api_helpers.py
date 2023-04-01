@@ -25,7 +25,7 @@ def startShower(**setTime):
   print()
   try:
     # Start new thread to start the countdown timer
-    startTimerThread = threading.Thread(target=startTimer, kwargs={'setTime': setTime})
+    startTimerThread = threading.Thread(target=startTimer, kwargs=setTime)
     startTimerThread.start()
 
     # Send message to motion sensor and display and buzzer
