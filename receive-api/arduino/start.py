@@ -31,9 +31,9 @@ def startTimer(minutes, seconds):
 def resetTimer():
     reset_timer()
     return('Timer Reset')
-    
+
 # Start the API webapp
 try:
   app.run(host='0.0.0.0')
 finally:
-    gpio.cleanup()
+    print("Programme ended")
