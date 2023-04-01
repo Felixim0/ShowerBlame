@@ -1,11 +1,9 @@
 #include "SevSeg.h"
 SevSeg sevseg;
 
-#include "SevSeg.h"
-SevSeg sevseg;
-
 unsigned long countdown_start = 0;
 unsigned long countdown_duration = 0;
+bool reset_received = false;
 
 void setup() {
   Serial.begin(9600);
@@ -26,16 +24,20 @@ void loop() {
     String input = Serial.readString();
 
     if (input.startsWith("reset")) {
+      reset_received = true;
       reset_countdown();
     } else {
+      reset_received = false;
       int separatorIndex = input.indexOf(',');
       unsigned long startMinutes = input.substring(0, separatorIndex).toInt();
       unsigned long startSeconds = input.substring(separatorIndex + 1).toInt();
       start_countdown(startMinutes, startSeconds);
     }
   }
-  
-  update_countdown();
+
+  if (!reset_received) {
+    update_countdown();
+  }
   sevseg.refreshDisplay();
 }
 
