@@ -9,3 +9,4 @@ The Idea: Have a button that when pressed, shows a red light at all other water-
 ## Instructions on how to run each Send/Receive api are in their respective directories
 
 https://www.digikey.co.uk/en/maker/blogs/2021/how-to-connect-a-keypad-to-a-raspberry-pi
+https://hackaday.io/page/8804-how-to-interface-hc-sr501-pir-sensor-with-raspberry-pi

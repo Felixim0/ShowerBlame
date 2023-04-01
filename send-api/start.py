@@ -93,19 +93,25 @@ def buttonCheck():
         if gpio_helpers.checkButtonGPIO(gpioValues) == True:
             # Button pressed
             if showerRunning == False:
-                # Start a shower, send message to receivers
-                api.startShower(setTime)
+                if (str(setTime) != '0') and (str(setTime) != '0:00'):
+                    # Start a shower, send message to receivers
+                    startShowerThread = threading.Thread(target=api.startShower, args=(setTime))
+                    startShowerThread.start()
 
-                # Start AcknowladgeByFlashing thread
-                ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
-                ackThread.start()
+                    # Start AcknowladgeByFlashing thread
+                    ackThread =  threading.Thread(target=gpio_helpers.acknowladgeByFlashing, kwargs=gpioValues)
+                    ackThread.start()
 
-                # Start the screen countdown!
-                showerRunning = True
+                    # Start the screen countdown!
+                    showerRunning = True
+
+                    # Sleep to stop the button being registered twice
+                    sleep(2)
             elif showerRunning == True:
                 # Shower already running, we now want to cancell the shower
                 # Set the time to essentially nothing to allow other thread to handle it
-                setTime = "0:02"
+                setTime = "0:00"
+                sleep(2)
 
         sleep(0.2)
 
